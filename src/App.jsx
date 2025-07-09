@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import * as Components from "./components";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [signIn, toggle] = React.useState(true);
+     return(
+         <Components.Container>
+             <Components.SignUpContainer signinIn={signIn}>
+                 <Components.Form>
+                     <Components.Title>Create Account</Components.Title>
+                     <Components.Input type='text' placeholder='Name' />
+                     <Components.Input type='email' placeholder='Email' />
+                     <Components.Input type='password' placeholder='Password' />
+                     <Components.Button>Sign Up</Components.Button>
+                 </Components.Form>
+             </Components.SignUpContainer>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+             <Components.SignInContainer signinIn={signIn}>
+                  <Components.Form>
+                      <Components.Title>Sign in</Components.Title>
+                      <Components.Input type='email' placeholder='Email' />
+                      <Components.Input type='password' placeholder='Password' />
+                      <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
+                      <Components.Button>Sigin In</Components.Button>
+                  </Components.Form>
+             </Components.SignInContainer>
+
+             <Components.OverlayContainer signinIn={signIn}>
+                 <Components.Overlay signinIn={signIn}>
+
+                 <Components.LeftOverlayPanel signinIn={signIn}>
+                     <Components.Title>Welcome Back!</Components.Title>
+                     <Components.Paragraph>
+                         To keep connected with us please login with your personal info
+                     </Components.Paragraph>
+                     <Components.GhostButton onClick={() => toggle(true)}>
+                         Sign In
+                     </Components.GhostButton>
+                     </Components.LeftOverlayPanel>
+
+                     <Components.RightOverlayPanel signinIn={signIn}>
+                       <Components.Title>Hello, Friend!</Components.Title>
+                       <Components.Paragraph>
+                           Enter Your personal details and start journey with us
+                       </Components.Paragraph>
+                           <Components.GhostButton onClick={() => toggle(false)}>
+                               Sigin Up
+                           </Components.GhostButton> 
+                     </Components.RightOverlayPanel>
+ 
+                 </Components.Overlay>
+             </Components.OverlayContainer>
+
+         </Components.Container>
+     )
 }
 
-export default App
+export default App;
